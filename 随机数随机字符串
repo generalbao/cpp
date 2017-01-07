@@ -1,0 +1,58 @@
+2017年1月7日10:22:47
+ 关键就是 srand()  rand 
+ 
+1111 随机数字
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main(){
+	
+	//种下种子 如果种子不变，下次运行程序，结果是一样的  记得头文件引入相关库 
+	srand(unsigned (time(NULL)) );
+	
+	for(int i=0;i<10;i++){
+		int r = rand();
+		cout << r << endl;
+	}
+}
+
+ 222 随机字符串
+ char arr = {'a','b','c','A','B','C'.....};
+ srand(unsigned time(NULL));
+ rand()%32
+ 
+ 
+ 
+333 随机字符串和数字
+#include <iostream>
+#include <ctime>
+using namespace std;
+ 
+const int LEN = 62; // 26 + 26 + 10
+char g_arrCharElem[LEN] = {'0', '1', '2',... 'A', 'B', 'C', ... 'a', 'b', 'c'};
+ 
+int main()
+{
+    int iLen;
+    cout << "输入要生成的字符串长度:\n";
+    do
+    {
+        cin >> iLen;
+    } while (iLen <= 0);
+    char* szStr = new char[iLen + 1];
+    szStr[iLen] = '\0';
+    srand((unsigned)time(0));            !!!!
+    int iRand = 0;
+    for (int i = 0; i < iLen; ++i)
+    {
+        iRand = rand() % LEN;            // iRand = 0 - 61      ！！！！！！    rand() % LEN 结果只能是 0 到 61
+        szStr[i] = g_arrCharElem[iRand];
+    }
+    cout << "生成的随机字符串为:\n";
+    cout << szStr << endl;
+    delete[] szStr;
+    return 0;
+}
