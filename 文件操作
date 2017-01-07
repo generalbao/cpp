@@ -1,0 +1,30 @@
+2017年1月7日15:00:14
+
+#include <iostream>
+#include <fstream>   //文件操作库 
+
+using namespace std;
+
+int main(){
+	//以写的方式打开文件 
+	ofstream file;
+	
+	//第一参数指定要打开的文件的名称和位置，
+	//第二个参数定义文件被打开的模式。 app append
+	file.open("test.txt",ios::app);
+	
+	string data;
+	cout << "please input something \n";
+	cin >> data;
+	
+	
+	file << data;
+	file.close();
+	
+	string filedata;
+	ifstream infile;    //以读的方式打开文件 
+	infile.open("test.txt");
+	 infile >> filedata;
+	cout << endl << "something from test.txt is \n" << filedata;
+	return 0;
+}
